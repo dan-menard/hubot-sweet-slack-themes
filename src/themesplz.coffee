@@ -1,11 +1,29 @@
 # FIXME: Add comments!
 
 module.exports = (robot) ->
-  robot.respond /themesplz/i, (msg) ->
-    hardcodedthemesfornow = [
-      "#373B39, #373B39, #373B39, #94D9B6, #C4D5CC, #68726D, #94D9B6, #94D9B6",
-      "#25282B, #766bb7, #766bb7, #BFBEC3, #6F6E73, #BFBEC3, #A76B76, #A76B76"
-    ]
-    themes = hardcodedthemesfornow
+  SWEET_THEMES_URL = "http://sweetthemesaremadeofthe.se/api/read/json"
 
-    msg.send themes.join("\n")
+  dataFromJsonp = (jsonpBody) ->
+    jsonpBodyAsString = jsonpBody.toString()
+    bodyAsString = jsonpBodyAsString.substring(jsonpBodyAsString.indexOf('{'), jsonpBodyAsString.length-2)
+
+    JSON.parse(bodyAsString)
+
+  themeFromPost = (post) ->
+    title = post['regular-title']
+
+    postContent = post['regular-body']
+    theme = postContent.substring(postContent.indexOf("<blockquote>") + 12, postContent.indexOf("</blockquote>"))
+
+    "#{title}: #{theme}"
+
+  robot.respond /themesplz/i, (msg) ->
+    robot
+      .http(SWEET_THEMES_URL)
+      .post() (err, res, body) ->
+        content = dataFromJsonp(body)
+
+        themes = []
+        themes.push themeFromPost(post) for post in content.posts[0..4]
+
+        msg.send themes.join("<br/>")
