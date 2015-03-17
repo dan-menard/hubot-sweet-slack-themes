@@ -1,0 +1,32 @@
+{
+  "name": "hubot-sweet-slack-themes",
+  "version": "0.1.0",
+  "description": "A hubot script for fetching slack themes from http://sweetthemesaremadeofthe.se.",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script --recursive ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dan-menard/hubot-sweet-slack-themes.git"
+  },
+  "keywords": [
+    "hubot",
+    "slack",
+    "themes"
+  ],
+  "author": "Dan Menard <https://github.com/dan-menard>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dan-menard/hubot-sweet-slack-themes/issues"
+  },
+  "dependencies": {
+    "coffee-script": "~1.6"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*",
+    "sinon-chai": "*",
+    "sinon": "*"
+  }
+}
