@@ -1,6 +1,6 @@
 {
   "name": "hubot-sweet-slack-themes",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description": "A hubot script for fetching slack themes from http://sweetthemesaremadeofthe.se.",
   "main": "index.coffee",
   "scripts": {
